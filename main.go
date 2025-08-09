@@ -28,4 +28,6 @@ func main() {
 		fmt.Println("Un-related key pressed")
 		return false, nil
 	})
+	//use this timer feature for the intervals
+	// time.Sleep(10 * time.Second)
 }
