@@ -16,7 +16,16 @@ func main() {
 			return false, nil
 		}
 
+		// logs the key presses
 		fmt.Println("\r" + key.String())
-		return true, nil
+
+		//terminate script with this button
+		if key.String() == "P" {
+			fmt.Println("STOP key pressed!")
+			return true, nil
+		}
+
+		fmt.Println("Un-related key pressed")
+		return false, nil
 	})
 }
