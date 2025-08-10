@@ -13,9 +13,10 @@ func autoClicker(running *bool) {
 	for {
 		if *running {
 			robotgo.Click("left", true)
-			fmt.Println("Simulated mouse-click event!")
-			time.Sleep(10 * time.Second)
-			fmt.Println("next click after 10-sec")
+			fmt.Println("Simulated double-click mouse event!")
+
+			fmt.Println("next click after 3-sec")
+			time.Sleep(3 * time.Second)
 		} else {
 			time.Sleep(100 * time.Millisecond)
 		}
@@ -29,14 +30,14 @@ func main() {
 
 	keyboard.Listen(
 		func(key keys.Key) (stop bool, err error) {
-			if key.String() == "S" {
-				fmt.Println("Hitting 'S' STARTS the auto-click")
+			if key.String() == "s" {
+				fmt.Println("Hitting 's' STARTS the auto-click")
 				running = true
-			} else if key.String() == "T" {
-				fmt.Println("Hitting 'T' TERMINATES the auto-click")
+			} else if key.String() == "t" {
+				fmt.Println("Hitting 't' TERMINATES the auto-click")
 				running = false
-			} else if key.String() == "E" {
-				fmt.Println("Ended Script by pressing 'E'")
+			} else if key.String() == "e" {
+				fmt.Println("Ended Script by pressing 'e'")
 				return true, nil
 			} else {
 				fmt.Println("\r" + key.String())
