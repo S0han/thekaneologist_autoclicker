@@ -41,7 +41,7 @@ func main() {
 				return true, nil
 			} else {
 				fmt.Println("\r" + key.String())
-				fmt.Println("Unrelated key pressed")
+				fmt.Println("Unrelated key pressed!")
 			}
 			return false, nil
 		})
