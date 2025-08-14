@@ -47,6 +47,9 @@ func autoClickerGUI(running *bool, s *string, t *string, interval *time.Duration
 			*s = text
 			mu.Unlock()
 			return
+		} else {
+			fmt.Println("Too many characters in START textbox! Just use 1!")
+			return
 		}
 	}
 
@@ -54,10 +57,13 @@ func autoClickerGUI(running *bool, s *string, t *string, interval *time.Duration
 	stop_ac_key_label := widget.NewLabel("Stop:")
 	stop_ac_key_input := widget.NewEntry()
 	stop_ac_key_input.OnChanged = func(text string) {
-		if len(text) == 1 {
+		if len(text) <= 1 {
 			mu.Lock()
 			*t = text
 			mu.Unlock()
+			return
+		} else {
+			fmt.Println("Too many characters in STOP textbox! Just use 1!")
 			return
 		}
 	}
