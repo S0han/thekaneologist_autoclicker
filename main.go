@@ -24,10 +24,10 @@ func autoClicker(running *bool, interval *time.Duration, mu *sync.Mutex) {
 		if copy_running {
 
 			robotgo.Click("left", true)
-			fmt.Println("Simulated double-click mouse event!")
+			fmt.Println("Simulated mouse click event!")
 
-			fmt.Printf("next click after %v", interval)
-			time.Sleep(*interval * time.Second)
+			fmt.Printf("next click after %v\n", interval)
+			time.Sleep(*interval)
 		} else {
 			time.Sleep(100 * time.Millisecond)
 		}
@@ -80,13 +80,13 @@ func autoClickerGUI(running *bool, s *string, t *string, interval *time.Duration
 	//start & stop buttons
 	start_button := widget.NewButton("START", func() {
 		mu.Lock()
-		fmt.Println("Hitting 'START' button STARTS the auto-click ")
+		fmt.Println("Hitting 'START' button STARTS the auto-click!")
 		*running = true
 		mu.Unlock()
 	})
 	stop_button := widget.NewButton("STOP", func() {
 		mu.Lock()
-		fmt.Println("Hitting 'STOP' button TERMINATES the auto-click ")
+		fmt.Println("Hitting 'STOP' button TERMINATES the auto-click!")
 		*running = false
 		mu.Unlock()
 	})
@@ -106,7 +106,7 @@ func autoClickerGUI(running *bool, s *string, t *string, interval *time.Duration
 }
 
 func main() {
-	running := false
+	var running bool = false
 	var mu sync.Mutex
 	var interval time.Duration = 3 * time.Second
 	s := ""
@@ -123,12 +123,12 @@ func main() {
 
 			if key.String() == copy_s {
 				mu.Lock()
-				fmt.Printf("Hitting '%v' STARTS the auto-click", copy_s)
+				fmt.Printf("Hitting '%v' STARTS the auto-click\n", copy_s)
 				running = true
 				mu.Unlock()
 			} else if key.String() == copy_t {
 				mu.Lock()
-				fmt.Printf("Hitting '%v' TERMINATES the auto-click", copy_t)
+				fmt.Printf("Hitting '%v' TERMINATES the auto-click\n", copy_t)
 				running = false
 				mu.Unlock()
 			} else {
